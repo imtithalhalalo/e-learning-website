@@ -4,10 +4,37 @@ const AddCourse = ({ onAdd }) => {
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
     const profile_image = document.getElementById("file-input");
+    const readFile = (file) => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
     
+          reader.onload = res => {
+            resolve(res.target.result);
+          };
+          reader.onerror = err => reject(err);
+    
+          reader.readAsDataURL(file);
+        });
+    }
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        if (!title || !desc) {
+          alert("Fill All Fields");
+          return;
+        }
+        // Encrypt Image
+        let encryptedImage = await readFile(profile_image.files[0]);   
+        encryptedImage = encryptedImage.split(",")[1];
+
+        const imageExtension = profile_image.files[0].name.split(".")[profile_image.files[0].name.split(".").length -1];
+        onAdd({ title, desc, encryptedImage, imageExtension});
+        
+        setTitle("");
+        setDesc("");
+    };
     return (
       <main className="container-add">
-        <form className="add-form">
+        <form className="add-form" onSubmit={onSubmit}>
           <h2>Add Course</h2>
           <div className="form-control">
             <label>Title</label>
