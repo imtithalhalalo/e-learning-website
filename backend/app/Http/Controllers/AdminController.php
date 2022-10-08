@@ -40,4 +40,23 @@ class AdminController extends Controller
         ], 200);
     }
 
+    public function addCourse (Request $request) {
+        $extension = $request->imageExtension;
+        $encryptedImage =$request->encryptedImage;
+        $image_no = time();//imageid
+        $image = base64_decode($encryptedImage);
+        $path = "images/courses/".$image_no.".".$extension;
+        file_put_contents($path,$image);
+        $course = Course::create([
+            'title' => $request->title,
+            'desc' => $request->desc,
+            'image_url' => $path
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Course added successfully',
+            'course' => $course,
+        ], 200);
+    }
 }
