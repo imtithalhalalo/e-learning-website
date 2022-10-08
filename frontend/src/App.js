@@ -1,6 +1,7 @@
 import './App.css';
 import Register from './components/Register';
 import Login from './components/Login';
+import Navbar from './components/Navbar';
 
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -45,6 +46,20 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register onAdd={ register }/>} />
           <Route path="/login" element={<Login onAdd={ login }/>} />
+          <Route path="/admin_add_person" element={
+            <>
+              <Navbar />
+              
+            </>
+          
+          } />
+          <Route path="/admin_add_course" element={
+            <>
+              <Navbar />
+              
+            </>
+          
+          } />
         </Routes>
       </BrowserRouter>
       
