@@ -4,10 +4,20 @@ const AddPerson = ({ onAdd }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [user_type, setUserType] = useState();
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (!name || !email) {
+          alert("Fill All Fields");
+          return;
+        }
+        onAdd({ name, email, user_type });
     
+        setName("");
+        setEmail("");
+    };
     return (
       <main className="container-add">
-        <form className="add-form">
+        <form className="add-form" onSubmit={onSubmit}>
           <h2>Add Student or Instructor</h2>
           <div className="form-control">
             <label>Name</label>
