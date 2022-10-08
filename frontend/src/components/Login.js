@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const Login = ({ onAdd }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (!email || !password) {
+          alert("Fill All Fields");
+          return;
+        }
+        
+        onAdd({ email, password });
+    
+        setEmail("");
+        setPassword("");
+    };
   return (
     <main className="container">
-        <form className="add-form">
+        <form className="add-form" onSubmit={onSubmit}>
         <h2>Log In</h2>
         <div className="form-control">
             <label>Email</label>
