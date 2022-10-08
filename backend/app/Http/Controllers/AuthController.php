@@ -10,6 +10,32 @@ use App\Models\User;
 
 class AuthController extends Controller {
     
+    public function register(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'password' => 'required|string',
+            'user_type' => 'required|string',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'user_type' => $request->user_type,
+        ]);
+
+        $token = Auth::login($user);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User created successfully',
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ], 200);
+    }
     public function login(Request $request) {
         $request->validate([
             'email' => 'required|string',
