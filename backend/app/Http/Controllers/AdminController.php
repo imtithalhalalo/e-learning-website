@@ -25,4 +25,19 @@ class AdminController extends Controller
         ], 200);
     }
 
+    public function addInstructor (Request $request) {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'user_type' => $request->user_type,
+        ]);
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Instructor added successfully',
+            'user' => $user,
+        ], 200);
+    }
+
 }
