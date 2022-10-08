@@ -1,13 +1,26 @@
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 
 const Register = ({ onAdd }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+    const [user_type, setUserType] = useState('admin');
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (!name || !email || !password) {
+          alert("Fill All Fields");
+          return;
+        }
+        setUserType('admin');
+        onAdd({ name, email, password, user_type });
+        
+        setName("");
+        setEmail("");
+        setPassword("");
+    };
     return (
       <main className="container">
-        <form className="add-form">
+        <form className="add-form" onSubmit={onSubmit}>
         <h2>Sign Up</h2>
           <div className="form-control">
             <label>Name</label>
