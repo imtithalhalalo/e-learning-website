@@ -33,3 +33,42 @@ h2 {
   box-shadow:  12px 12px 24px #bfdcf541,
              -12px -12px 24px #bfdcf541;
 }
+.btn:hover {
+  background: rgba(15, 65, 105, 0.566);
+}
+.btn-block {
+  width: 100%;
+}
+.add-form {
+  margin-bottom: 40px;
+}
+
+.form-control {
+  margin: 20px 0;
+}
+
+.form-control label {
+  display: block;
+  padding: 3px 7px;
+}
+
+.form-control input, label, textarea, .choose, .btn {
+    font-size: 20px;
+    padding-left: 20px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    height: 45px;
+    transition: .3s;
+    outline: none;
+    color: steelblue;
+}
+input::placeholder, textarea::placeholder {
+  font-size: 17px;
+  color: rgba(70, 131, 180, 0.311);
+}
+.btn {
+  background-color: steelblue;
+  color: white;
+  margin-top: 60px;
+}
