@@ -2,8 +2,8 @@ import './App.css';
 import Register from './components/Register';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
-
-import { useState, useEffect } from "react";
+import AddPerson from './components/AddPerson';
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from 'axios';
 
@@ -40,6 +40,31 @@ function App() {
     });
   };
 
+  const addPerson = async (user) => {
+    console.log(user.name, user.email, user.user_type)
+    const data ={
+      name: user.name,
+      email: user.email,
+      password: '12345',
+      user_type: user.user_type
+    }
+    if (user.user_type === 'student'){
+      await axios.post("http://127.0.0.1:8000/api/v0.1/addstudent", data
+      , { headers: {'Authorization': `Bearer ${localStorage.getItem(`token`)}`}}).then(response=>{
+          const res = response.data;
+          setUsers([...users, res]);
+      });
+    }else if (user.user_type === 'instructor') {
+      await axios.post("http://127.0.0.1:8000/api/v0.1/addinstructor", data
+      , { headers: {'Authorization': `Bearer ${localStorage.getItem(`token`)}`}}).then(response=>{
+          const res = response.data;
+          setUsers([...users, res]);
+      });
+    }
+    
+
+  };
+
   return (
 
       <BrowserRouter>
@@ -49,7 +74,7 @@ function App() {
           <Route path="/admin_add_person" element={
             <>
               <Navbar />
-              
+              <AddPerson onAdd={ addPerson }/>
             </>
           
           } />
