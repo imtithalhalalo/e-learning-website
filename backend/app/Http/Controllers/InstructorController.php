@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assignment;
+use App\Models\Course_Student;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Course;
+use App\Models\EnrolledIn;
 
 class InstructorController extends Controller
 {
@@ -24,19 +27,19 @@ class InstructorController extends Controller
         ], 200);
     }
     
-    public function addStudentToCourse(Request $request) {
-        $student_email = $request->email;
+
+    public function createAssignment (Request $request) {
+        $assignment = Assignment::create([
+            'title' => $request->title,
+            'desc' => $request->desc,
+            'deadline' => $request->deadline,
+            'course_id' => $request->course_id
+        ]);
         
-        $course_id = $request->course_id;
-        
-        $add_student_to_course = Course::where('_id', '=', $course_id)
-                                    ->get();
-        
-        foreach ($add_student_to_course as $row) {
-            $row->update(['student_email' => $student_email]);
-        }
-        return response()->json( 
-            $add_student_to_course,
-        );                
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Assignment added successfully',
+            'assignment' => $assignment,
+        ], 200);
     }
 }
