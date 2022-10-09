@@ -77,4 +77,19 @@ class AdminController extends Controller
        );
     }
 
+    public function assignInstructor(Request $request) {
+        $instructor_id = $request->id;
+        
+        $course_title = $request->title;
+        
+        $assign = Course::where('title', '=', $course_title)
+                        ->get();
+        foreach ($assign as $row) {
+            $row->update(['instructor_id' => $instructor_id]);
+        }
+        $assign->instructor_id = $instructor_id;
+        return response()->json( 
+            $assign,
+        );                
+    }
 }
