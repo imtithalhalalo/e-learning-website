@@ -19,7 +19,8 @@ Route::group(["prefix"=> "v0.1"], function(){
     //instructor routes
     Route::group(["middleware" => "instructor.role"], function(){
         Route::post('/addstudent', [InstructorController::class, 'addStudent'])->name('add-student');
-        Route::post('/add_student_to_course', [InstructorController::class, 'addStudentToCourse'])->name('add-student-to-course');
+        Route::post('/enrollstudent', [InstructorController::class, 'enrollStudent'])->name('enroll-student');
+        Route::post('/createassignment', [InstructorController::class, 'createAssignment'])->name('create-assignment');
         
     });
 
