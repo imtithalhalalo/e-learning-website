@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 
 const Login = ({ onAdd }) => {
     const [email, setEmail] = useState('');
