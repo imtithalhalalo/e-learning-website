@@ -122,6 +122,16 @@ function App() {
             </>
           
           } />
+
+          <Route path="/instructor_add_student" element={
+            <>
+              <Navbar text1={"Add Student "} text2={"Create Assignment"} text3={"Create Announcement"}
+                path1="/instructor_add_student" path2="/instructor_create_assignment" path3="/instructor_create_announcement"
+              />
+              <AddStudent onAdd={ addPerson }/>
+            </>
+          
+          } />
         </Routes>
       </BrowserRouter>
       
