@@ -16,6 +16,11 @@ Route::group(["prefix"=> "v0.1"], function(){
         Route::post('/assigninstructor', [AdminController::class, 'assignInstructor'])->name('assign-instructor-to-Course');
     });
 
+    //instructor routes
+    Route::group(["middleware" => "instructor.role"], function(){
+        Route::post('/addstudent', [InstructorController::class, 'addStudent'])->name('add-student');
+    });
+
     
     Route::get('/retrievecourses', [AdminController::class, 'retrieveCourses'])->name('retrieve-courses');
     Route::get('/getinstructors', [AdminController::class, 'getInstructors'])->name('get-instructors');
