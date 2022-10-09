@@ -3,7 +3,8 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import AddPerson from './components/AddPerson';
-import { useState } from "react";
+import AddCourse from './components/AddCourse';
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from 'axios';
 
@@ -65,6 +66,23 @@ function App() {
 
   };
 
+  const addCourse = async (course) => {
+    console.log(course.title, course.desc, course.imageExtension, course.encryptedImage)
+    const data ={
+      title: course.title,
+      desc: course.desc,
+      imageExtension: course.imageExtension,
+      encryptedImage: course.encryptedImage
+    }
+    
+    await axios.post("http://127.0.0.1:8000/api/v0.1/addcourse", data
+    , { headers: {'Authorization': `Bearer ${localStorage.getItem(`token`)}`}}).then(response=>{
+        const res = response.data;
+        setCourses([...courses, res]);
+    });
+    
+
+  };
   return (
 
       <BrowserRouter>
@@ -81,7 +99,7 @@ function App() {
           <Route path="/admin_add_course" element={
             <>
               <Navbar />
-              
+              <AddCourse onAdd={ addCourse }/>
             </>
           
           } />
