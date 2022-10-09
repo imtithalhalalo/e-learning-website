@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
-use App\Models\Course_Student;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -40,6 +40,20 @@ class InstructorController extends Controller
             'status' => 'success',
             'message' => 'Assignment added successfully',
             'assignment' => $assignment,
+        ], 200);
+    }
+
+    public function createAnnouncement (Request $request) {
+        $announcement = Announcement::create([
+            'title' => $request->title,
+            'desc' => $request->desc,
+            'course_id' => $request->course_id
+        ]);
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Announcement added successfully',
+            'announcement' => $announcement,
         ], 200);
     }
     public function enrollStudent ( Request $request ) {
