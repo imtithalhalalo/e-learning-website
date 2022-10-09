@@ -11,7 +11,8 @@ class Course extends Eloquent implements JWTSubject
     protected $fillable = [
         'title',
         'desc',
-        'image_url'
+        'image_url',
+        'instructor_id'
     ];
     public function getJWTIdentifier()
     {
