@@ -42,4 +42,20 @@ class InstructorController extends Controller
             'assignment' => $assignment,
         ], 200);
     }
+    public function enrollStudent ( Request $request ) {
+        $student = User::where('email', $request->email)
+                            ->first();            
+        $enrollment = EnrolledIn::create([
+            'student_id' => $student->_id,
+            'course_id' => $request->course_id
+        ]);
+        
+        
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Enrolled successfully',
+            'enrollment' => $enrollment,
+        ], 200);
+    }
 }
