@@ -5,9 +5,10 @@ import Navbar from './components/Navbar';
 import AddPerson from './components/AddPerson';
 import AddCourse from './components/AddCourse';
 import Courses from './components/Courses';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from 'axios';
+import AddStudent from './components/AddStudent';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -39,6 +40,9 @@ function App() {
         if(response.data.user.user_type === 'admin') {
           localStorage.setItem("token", response.data.authorisation.token);
           window.location.pathname = '/admin_add_person';
+        }else if (response.data.user.user_type === 'instructor') {
+          localStorage.setItem("token", response.data.authorisation.token);
+          window.location.pathname = '/instructor_add_student';
         }
     });
   };
@@ -93,7 +97,9 @@ function App() {
           <Route path="/login" element={<Login onAdd={ login }/>} />
           <Route path="/admin_add_person" element={
             <>
-              <Navbar />
+              <Navbar text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""}
+                path1="/admin_add_person" path2="/admin_add_course" path3=""
+              />
               <AddPerson onAdd={ addPerson }/>
             </>
           
@@ -101,7 +107,9 @@ function App() {
           <Route path="/admin_add_course" element={
             <>
             <>
-              <Navbar />
+              <Navbar text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""}
+                path1="/admin_add_person" path2="/admin_add_course" path3=""
+              />
               
             </>
             <AddCourse onAdd={ addCourse }/>
