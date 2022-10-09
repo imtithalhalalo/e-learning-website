@@ -1,27 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios'
 
-const AddStudentToCourse = ({ onAdd }) => {
+const AddStudentToCourse = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [courseId, setCourseId] = useState('');
-    const [courseTitle, setCourseTitle] = useState('');
-    const [ courses, setCourses ] = useState([])
+    const [courses, setCourses ] = useState([])
     const [user_type, setUserType] = useState('student');
-    const onSubmit = (e) => {
+    const getCourses = async () => {
+        try {
+              const res = await axios.get("http://127.0.0.1:8000/api/v0.1/retrievecourses")
+              
+              setCourses(res.data);  // set State
+        
+        } catch (err) {
+          console.error(err.message);
+        }
+      };
+      const addStudentToCourse = async (e) => {
         e.preventDefault();
         if (!name || !email) {
           alert("Fill All Fields");
           return;
         }
         setUserType('student')
-        onAdd({ name, email, user_type });
-    
+        
         setName("");
         setEmail("");
-    };
+        const data = {
+            email: email,
+            course_id: courseId
+        }
+        console.log(data)
+        try {
+            await axios.post("http://127.0.0.1:8000/api/v0.1/add_student_to_course", data,
+            { headers: {'Authorization': `Bearer ${localStorage.getItem(`token`)}`}}).then(response=>{
+               console.log(response);
+            });
+    
+            console.log('success')  
+        } catch (err) {
+            console.error(err.message);
+        }
+        
+    }
+    useEffect(()=>{
+        getCourses()
+    },[])  
     return (
       <main className="container-add">
-        <form className="add-form" onSubmit={onSubmit}>
+        <form className="add-form" onSubmit={addStudentToCourse}>
           <h2>Add Student </h2>
           <div className="form-control">
             <label>Name</label>
