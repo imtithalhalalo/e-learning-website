@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import AddPerson from './components/AddPerson';
 import AddCourse from './components/AddCourse';
+import Courses from './components/Courses';
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from 'axios';
@@ -11,6 +12,7 @@ import axios from 'axios';
 function App() {
   const [users, setUsers] = useState([]);
   const [courses, setCourses] = useState([]);
+  
   const register = async (user) => {
     const data ={
       name: user.name,
@@ -42,7 +44,7 @@ function App() {
   };
 
   const addPerson = async (user) => {
-    console.log(user.name, user.email, user.user_type)
+    // console.log(user.name, user.email, user.user_type)
     const data ={
       name: user.name,
       email: user.email,
@@ -67,7 +69,7 @@ function App() {
   };
 
   const addCourse = async (course) => {
-    console.log(course.title, course.desc, course.imageExtension, course.encryptedImage)
+    // console.log(course.title, course.desc, course.imageExtension, course.encryptedImage)
     const data ={
       title: course.title,
       desc: course.desc,
@@ -98,8 +100,17 @@ function App() {
           } />
           <Route path="/admin_add_course" element={
             <>
+            <>
               <Navbar />
-              <AddCourse onAdd={ addCourse }/>
+              
+            </>
+            <AddCourse onAdd={ addCourse }/>
+            {(
+                  <Courses
+                    courses={ courses }
+                  />
+                )}
+              
             </>
           
           } />
