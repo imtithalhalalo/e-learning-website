@@ -10,11 +10,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from 'axios';
 import AddStudent from './components/AddStudent';
 import AddStudentToCourse from './components/AddStudentToCourse';
-
+import CreateAssignment from './components/CreateAssignment';
 function App() {
   const [users, setUsers] = useState([]);
   const [courses, setCourses] = useState([]);
-  
+  const [assignments, setAssignments] = useState([]);
   const register = async (user) => {
     const data ={
       name: user.name,
@@ -91,18 +91,6 @@ function App() {
 
   };
 
-  const addStudentToCourse = async (course) => {
-    const data ={
-      course_id: course._id,
-      
-    }
-    
-    await axios.post("http://127.0.0.1:8000/api/v0.1/addcourse", data
-    , { headers: {'Authorization': `Bearer ${localStorage.getItem(`token`)}`}}).then(response=>{
-        const res = response.data;
-        setCourses([...courses, res]);
-    });
-  }
   return (
 
       <BrowserRouter>
@@ -143,6 +131,17 @@ function App() {
                 path1="/instructor_add_student" path2="/instructor_create_assignment" path3="/instructor_create_announcement" path4={"/instructor_add_student_to_course"}
               />
               <AddStudent onAdd={ addPerson }/>
+            </>
+          
+          } />
+
+
+          <Route path="/instructor_create_assignment" element={
+            <>
+              <Navbar User="Instructor" text1={"Add Student "} text2={"Create Assignment"} text3={"Create Announcement"} text4={"Add Student To Course "}
+                path1="/instructor_add_student" path2="/instructor_create_assignment" path3="/instructor_create_announcement" path4={"/instructor_add_student_to_course"}
+              />
+              <CreateAssignment />
             </>
           
           } />
