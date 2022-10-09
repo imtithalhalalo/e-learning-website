@@ -67,4 +67,14 @@ class AdminController extends Controller
             $course,
        );
     }
+
+    public function getInstructors () {
+        $instructors = User::where('user_type', '=', 'instructor')
+                    ->get();
+
+        return response()->json(
+            $instructors,
+       );
+    }
+
 }
