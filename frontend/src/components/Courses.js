@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
+import Button from './Button';
 
 const Courses = () => {
   const [ courses, setCourses ] = useState([])
@@ -29,6 +30,7 @@ return (
          <li className="boxes" key={course._id}>
          <div className='box'>
          <p>{course.title} </p>
+         <Button color={""} text={"Assign Instructor"} />
          </div>
          </li>
        ))}
