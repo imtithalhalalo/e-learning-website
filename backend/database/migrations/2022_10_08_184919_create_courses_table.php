@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('title', 255);
             $table->string('desc');
             $table->string('image_url');
+            $table->string('instructor_id')->nullable();
             $table->timestamps();
         });
     }
