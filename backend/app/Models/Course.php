@@ -13,8 +13,8 @@ class Course extends Eloquent implements JWTSubject
         'desc',
         'image_url',
         'instructor_id',
-        'student_email'
     ];
+   
     public function getJWTIdentifier()
     {
         return $this->getKey();
