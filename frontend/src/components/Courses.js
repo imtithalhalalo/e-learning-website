@@ -9,7 +9,7 @@ const Courses = () => {
   const [ courseName, setCourseName ] = useState([])
 const getCourses = async () => {
   try {
-    const res = await axios.get("http://127.0.0.1:8000/api/v0.1/retrievecourses")
+        const res = await axios.get("http://127.0.0.1:8000/api/v0.1/retrievecourses")
         
         setCourses(res.data);  // set State
   
@@ -28,7 +28,26 @@ const getInstructors = async () => {
       console.error(err.message);
     }
   };
+const assignInstructor = async () => {
+    const data = {
+        id: instructorId,
+        title: courseName
+    }
+    console.log(data)
+    // console.log(instructorId);
+    // console.log(courseName);
+    try {
+        await axios.post("http://127.0.0.1:8000/api/v0.1/assigninstructor", data,
+        { headers: {'Authorization': `Bearer ${localStorage.getItem(`token`)}`}}).then(response=>{
+           console.log(response);
+        });
 
+        console.log('success')  
+    } catch (err) {
+        console.error(err.message);
+    }
+    
+}
   useEffect(()=>{
     getInstructors()
     getCourses()
@@ -42,7 +61,7 @@ return (
          <li className="boxes" key={course._id}>
          <div className='box'>
          <p>{course.title} </p>
-         <Button color={""} text={"Assign Instructor"} />
+         <Button color={""} text={"Assign Instructor"} onClick={ assignInstructor }/>
          </div>
          
          <div className="form-control">
