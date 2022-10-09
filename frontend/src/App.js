@@ -9,6 +9,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from 'axios';
 import AddStudent from './components/AddStudent';
+import AddStudentToCourse from './components/AddStudentToCourse';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -89,6 +90,19 @@ function App() {
     
 
   };
+
+  const addStudentToCourse = async (course) => {
+    const data ={
+      course_id: course._id,
+      
+    }
+    
+    await axios.post("http://127.0.0.1:8000/api/v0.1/addcourse", data
+    , { headers: {'Authorization': `Bearer ${localStorage.getItem(`token`)}`}}).then(response=>{
+        const res = response.data;
+        setCourses([...courses, res]);
+    });
+  }
   return (
 
       <BrowserRouter>
@@ -97,7 +111,7 @@ function App() {
           <Route path="/login" element={<Login onAdd={ login }/>} />
           <Route path="/admin_add_person" element={
             <>
-              <Navbar text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""}
+              <Navbar User="Admin" text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""}
                 path1="/admin_add_person" path2="/admin_add_course" path3=""
               />
               <AddPerson onAdd={ addPerson }/>
@@ -107,7 +121,7 @@ function App() {
           <Route path="/admin_add_course" element={
             <>
             <>
-              <Navbar text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""}
+              <Navbar User="Admin" text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""}
                 path1="/admin_add_person" path2="/admin_add_course" path3=""
               />
               
@@ -125,10 +139,20 @@ function App() {
 
           <Route path="/instructor_add_student" element={
             <>
-              <Navbar text1={"Add Student "} text2={"Create Assignment"} text3={"Create Announcement"}
-                path1="/instructor_add_student" path2="/instructor_create_assignment" path3="/instructor_create_announcement"
+              <Navbar User="Instructor" text1={"Add Student "} text2={"Create Assignment"} text3={"Create Announcement"} text4={"Add Student To Course "}
+                path1="/instructor_add_student" path2="/instructor_create_assignment" path3="/instructor_create_announcement" path4={"/instructor_add_student_to_course"}
               />
               <AddStudent onAdd={ addPerson }/>
+            </>
+          
+          } />
+
+          <Route path="/instructor_add_student_to_course" element={
+            <>
+              <Navbar User="Instructor" text1={"Add Student "} text4={"Add Student To Course "} text2={"Create Assignment"} text3={"Create Announcement"}
+                path1="/instructor_add_student" path2="/instructor_create_assignment" path3="/instructor_create_announcement" path4={"/instructor_add_student_to_course"}
+              />
+              <AddStudentToCourse />
             </>
           
           } />
