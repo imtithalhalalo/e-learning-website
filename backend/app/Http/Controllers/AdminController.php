@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
     public function addStudent (Request $request) {
@@ -58,5 +58,13 @@ class AdminController extends Controller
             'message' => 'Course added successfully',
             'course' => $course,
         ], 200);
+    }
+
+    public function retrieveCourses () {
+        $course = Course::all();
+
+        return response()->json(
+            $course,
+       );
     }
 }
