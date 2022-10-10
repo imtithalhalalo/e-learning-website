@@ -29,4 +29,13 @@ class StudentController extends Controller
         ], 200);
     }
 
+    public function viewAssignments ($courseID) {
+        $assignments = Assignment::where('course_id', '=', $courseID)->get();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'All Assignments',
+            'assignments' => $assignments,
+        ], 200);
+    }
 }
