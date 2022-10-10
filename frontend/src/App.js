@@ -196,6 +196,16 @@ function App() {
           
           } />
 
+          <Route path="/student_submit_assignments" element={
+            <>
+              <Navbar User="Student" text1={"View Courses"} text2={"View All Assignments"} text3={""} text4={""}
+                path1="/student_view_courses" path2="/student_view_assignments" path3="" path4=""
+              />
+              <SubmitAssignment />
+              
+            </>
+          
+          } />
         </Routes>
       </BrowserRouter>
       
