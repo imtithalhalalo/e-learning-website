@@ -24,6 +24,12 @@ Route::group(["prefix"=> "v0.1"], function(){
         Route::post('/createannouncement', [InstructorController::class, 'createAnnouncement'])->name('create-announcement');
     });
 
+    //student routes
+    Route::group(["middleware" => "student.role"], function(){
+        Route::get('/viewcourses', [StudentController::class, 'viewCourses'])->name('view-courses');
+        Route::get('/viewassignments/{id}', [StudentController::class, 'viewAssignments'])->name('view-assignments');
+        Route::post('/submitassignment', [StudentController::class, 'submitAssignment'])->name('submit-assignment');
+    });
 
     Route::get('/retrievecourses', [AdminController::class, 'retrieveCourses'])->name('retrieve-courses');
     Route::get('/getinstructors', [AdminController::class, 'getInstructors'])->name('get-instructors');
