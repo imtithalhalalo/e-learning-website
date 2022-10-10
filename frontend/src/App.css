@@ -200,3 +200,27 @@ p {
   border: none;
   text-align: start;
 }
+
+.box-assignment  {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 500px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: #31383F;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.modal {
+  visibility: hidden;
+}
+.show-modal {
+  visibility: visible;
+}
