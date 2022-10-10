@@ -12,6 +12,10 @@ import AddStudent from './components/AddStudent';
 import AddStudentToCourse from './components/AddStudentToCourse';
 import CreateAssignment from './components/CreateAssignment';
 import CreateAnnouncement from './components/CreateAnnouncement';
+import ViewCourses from './components/ViewCourses';
+import ViewAssignments from './components/ViewAssignments';
+import SubmitAssignment from './components/SubmitAssignment';
+
 function App() {
   const [users, setUsers] = useState([]);
   const [courses, setCourses] = useState([]);
@@ -39,13 +43,14 @@ function App() {
     }
 
     await axios.post("http://127.0.0.1:8000/api/v0.1/login", data).then(response=>{
-        if(response.data.user.user_type === 'admin') {
-          localStorage.setItem("token", response.data.authorisation.token);
+      localStorage.setItem("token", response.data.authorisation.token);
+        if(response.data.user.user_type === 'admin') 
           window.location.pathname = '/admin_add_person';
-        }else if (response.data.user.user_type === 'instructor') {
-          localStorage.setItem("token", response.data.authorisation.token);
+        else if (response.data.user.user_type === 'instructor')
           window.location.pathname = '/instructor_add_student';
-        }
+        else if (response.data.user.user_type === 'student') 
+          window.location.pathname = '/student_view_courses';
+
     });
   };
 
@@ -100,8 +105,8 @@ function App() {
           <Route path="/login" element={<Login onAdd={ login }/>} />
           <Route path="/admin_add_person" element={
             <>
-              <Navbar User="Admin" text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""}
-                path1="/admin_add_person" path2="/admin_add_course" path3=""
+              <Navbar User="Admin" text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""} text4={""}
+                path1="/admin_add_person" path2="/admin_add_course" path3="" path4=""
               />
               <AddPerson onAdd={ addPerson }/>
             </>
@@ -110,8 +115,8 @@ function App() {
           <Route path="/admin_add_course" element={
             <>
             <>
-              <Navbar User="Admin" text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""}
-                path1="/admin_add_person" path2="/admin_add_course" path3=""
+              <Navbar User="Admin" text1={"Add Student Or Instructor"} text2={"Add Course"} text3={""} text4={""}
+                path1="/admin_add_person" path2="/admin_add_course" path3="" path4=""
               />
               
             </>
@@ -167,6 +172,19 @@ function App() {
             </>
           
           } />
+
+
+          <Route path="/student_view_courses" element={
+            <>
+              <Navbar User="Student" text1={"View Courses"} text2={"View All Assignments"} text3={""} text4={""}
+                path1="/student_view_courses" path2="/student_view_assignments" path3="" path4=""
+              />
+              <ViewCourses />
+              
+            </>
+          
+          } />
+
         </Routes>
       </BrowserRouter>
       
