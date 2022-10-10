@@ -52,7 +52,7 @@ h2 {
   padding: 3px 7px;
 }
 
-.form-control input, label, textarea, .choose, .btn, .btn-2 {
+.form-control input, label, textarea, .choose, .btn, .btn-2, .btn-3 {
     font-size: 20px;
     padding-left: 20px;
     border: none;
@@ -72,6 +72,14 @@ h2 {
   color: white;
   font-size: 15px;
   padding-left: 0px;
+}
+
+.btn-3 {
+  width: 100%;
+  background-color: steelblue;
+  color: white;
+  font-size: 15px;
+  padding: 10px;
 }
 input::placeholder, textarea::placeholder {
   font-size: 17px;
@@ -144,6 +152,7 @@ ul li {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  padding: 10px;
   border-radius: 10px;
   height: fit-content;
   width: 100%;
@@ -156,4 +165,38 @@ ul li {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.box-white {
+  min-width: 275px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.course-title , p{
+  font-size: 20px;
+  color: rgba(25, 74, 114, 0.678);
+  padding-bottom: 20px;
+}
+p {
+  font-size: 14px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.button-assignment {
+  width: 30%;
+}
+.btn-4 {
+  background-color: inherit;
+  color: steelblue;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  text-align: start;
 }
