@@ -21,10 +21,10 @@ Route::group(["prefix"=> "v0.1"], function(){
         Route::post('/addstudent', [InstructorController::class, 'addStudent'])->name('add-student');
         Route::post('/enrollstudent', [InstructorController::class, 'enrollStudent'])->name('enroll-student');
         Route::post('/createassignment', [InstructorController::class, 'createAssignment'])->name('create-assignment');
-        
+        Route::post('/createannouncement', [InstructorController::class, 'createAnnouncement'])->name('create-announcement');
     });
 
-    
+
     Route::get('/retrievecourses', [AdminController::class, 'retrieveCourses'])->name('retrieve-courses');
     Route::get('/getinstructors', [AdminController::class, 'getInstructors'])->name('get-instructors');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
