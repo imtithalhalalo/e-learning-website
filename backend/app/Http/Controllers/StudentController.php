@@ -38,4 +38,19 @@ class StudentController extends Controller
             'assignments' => $assignments,
         ], 200);
     }
+
+    public function submitAssignment ( Request $request ) {
+                    
+        $submit = SubmitAssignment::create([
+            'student_id' => Auth::user()->_id,
+            'assignment_id' => $request->assignment_id,
+            'answer' => $request->answer
+        ]);
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Submitted successfully',
+            'submit' => $submit,
+        ], 200);
+    }
 }
