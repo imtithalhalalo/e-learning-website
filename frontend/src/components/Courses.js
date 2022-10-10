@@ -61,7 +61,7 @@ return (
          <li className="boxes" key={course._id}>
          <div className='box'>
          <p>{course.title} </p>
-         <Button color={""} text={"Assign Instructor"} onClick={ assignInstructor }/>
+         <Button btn="btn-2" text={"Assign Instructor"} onClick={ assignInstructor }/>
          </div>
          
          <div className="form-control">
