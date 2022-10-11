@@ -29,6 +29,7 @@ Route::group(["prefix"=> "v0.1"], function(){
         Route::get('/viewcourses', [StudentController::class, 'viewCourses'])->name('view-courses');
         Route::get('/viewassignments/{id}', [StudentController::class, 'viewAssignments'])->name('view-assignments');
         Route::post('/submitassignment', [StudentController::class, 'submitAssignment'])->name('submit-assignment');
+        Route::get('/viewannouncements', [StudentController::class, 'viewAnnouncements'])->name('view-announcements');
     });
 
     Route::get('/retrievecourses', [AdminController::class, 'retrieveCourses'])->name('retrieve-courses');
