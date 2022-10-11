@@ -205,6 +205,8 @@ ul li {
 }
 p {
   font-size: 14px;
+  color: #497bdc;
+  padding-top: 10px;
 }
 .content {
   display: flex;
