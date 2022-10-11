@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Assignment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -51,6 +52,16 @@ class StudentController extends Controller
             'status' => 'success',
             'message' => 'Submitted successfully',
             'submit' => $submit,
+        ], 200);
+    }
+
+    public function viewAnnouncements () {
+        $announcements = Announcement::all();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'All Announcements',
+            'announcements' => $announcements,
         ], 200);
     }
 }
