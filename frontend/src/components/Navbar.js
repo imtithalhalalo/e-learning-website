@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import Button from './Button';
 
 const Navbar = ({User, text1 , text2 , text3, text4, path1, path2, path3, path4} ) => {
+  const Logout = async (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    window.location = '/login';
+  }
   return (
     <section className="header background">
     <div className="nav-links">
@@ -30,7 +36,8 @@ const Navbar = ({User, text1 , text2 , text3, text4, path1, path2, path3, path4}
           <span><h4>{text4}</h4></span>
         </Link>
     </div>
-        
+    <br></br>
+    <Button onClick={Logout} text={"Logout"} btn={'btn-2'}/>
     </section>
   );
 };
