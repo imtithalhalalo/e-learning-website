@@ -1,28 +1,31 @@
 import { useState, useEffect } from "react";
 import axios from 'axios'
+import React from 'react'; 
+
 
 const AddStudentToCourse = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [courseId, setCourseId] = useState('');
-    const [courses, setCourses ] = useState([])
-    const [user_type, setUserType] = useState('student');
-    const getCourses = async () => {
-        try {
-              const res = await axios.get("http://127.0.0.1:8000/api/v0.1/retrievecourses")
-              
-              setCourses(res.data);  // set State
-        
-        } catch (err) {
-          console.error(err.message);
-        }
-      };
-      const addStudentToCourse = async (e) => {
-        e.preventDefault();
-        if (!name || !email) {
-          alert("Fill All Fields");
-          return;
-        }
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [courseId, setCourseId] = useState('');
+  const [courses, setCourses] = useState([])
+  const [user_type, setUserType] = useState('student');
+  const getCourses = async () => {
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/api/v0.1/retrievecourses")
+
+      setCourses(res.data);  // set State
+
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const addStudentToCourse = async (e) => {
+    e.preventDefault();
+    if (!name || !email) {
+      alert("Fill All Fields");
+      return;
+    }
 
     setName("");
     setEmail("");
@@ -35,6 +38,7 @@ const AddStudentToCourse = () => {
       await axios.post("http://127.0.0.1:8000/api/v0.1/enrollstudent", data,
         { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } }).then(response => {
           console.log(response);
+          alert(response.data.message)
         });
 
       console.log('success')

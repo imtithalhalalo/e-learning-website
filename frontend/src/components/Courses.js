@@ -40,6 +40,7 @@ const assignInstructor = async () => {
         await axios.post("http://127.0.0.1:8000/api/v0.1/assigninstructor", data,
         { headers: {'Authorization': `Bearer ${localStorage.getItem(`token`)}`}}).then(response=>{
            console.log(response);
+           alert("Assigned Successfully")
         });
 
         console.log('success')  
