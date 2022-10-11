@@ -53,14 +53,14 @@ const assignInstructor = async () => {
     getCourses()
   },[])  
 return (
-    <main className="container-add">
+    <main className="container-add bg-white">
      <h2>Courses</h2>
      <ul >
        {courses.map(course=>(
         
          <li className="boxes" key={course._id}>
          <div className='box'>
-         <p>{course.title} </p>
+         <h4>{course.title} </h4>
          <Button btn="btn-2" text={"Assign Instructor"} onClick={ assignInstructor }/>
          </div>
          
