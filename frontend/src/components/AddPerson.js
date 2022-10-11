@@ -18,7 +18,13 @@ const AddPerson = ({ onAdd }) => {
     return (
       <main className="container-add">
         <form className="add-form" onSubmit={onSubmit}>
+        <div className="bar-2">
           <h2>Add Student or Instructor</h2>
+          <img src={process.env.PUBLIC_URL+"images/user.png"} alt=""
+            width="28px"
+            height="28px"/>
+        </div>
+          
           <div className="form-control">
             <label>Name</label>
             <input
