@@ -62,7 +62,7 @@ function App() {
       password: '12345',
       user_type: user.user_type
     }
-    await axios.post("http://127.0.0.1:8000/api/v0.1/addstudent", data
+    await axios.post("http://127.0.0.1:8000/api/v0.1/addstudentt", data
       , { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } }).then(response => {
         const res = response.data;
         setUsers([...users, res]);

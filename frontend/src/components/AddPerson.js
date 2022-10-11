@@ -3,7 +3,7 @@ import { useState } from "react";
 const AddPerson = ({ onAdd }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [user_type, setUserType] = useState('');
+    const [user_type, setUserType] = useState('student');
     const onSubmit = (e) => {
         e.preventDefault();
         if (!name || !email) {
