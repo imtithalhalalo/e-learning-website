@@ -15,6 +15,7 @@ import CreateAnnouncement from './components/CreateAnnouncement';
 import ViewCourses from './components/ViewCourses';
 import ViewAssignments from './components/ViewAssignments';
 import SubmitAssignment from './components/SubmitAssignment';
+import ViewAnnouncements from './components/ViewAnnouncements';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -166,8 +167,8 @@ function App() {
 
         <Route path="/student_view_courses" element={
           <>
-            <Navbar User="Student" text1={"View Courses"} text2={"View All Assignments"} text3={""} text4={""}
-              path1="/student_view_courses" path2="/student_view_assignments" path3="" path4=""
+            <Navbar User="Student" text1={"View Courses"} text2={"View All Assignments"} text3={"View All Announcements"} text4={""}
+              path1="/student_view_courses" path2="/student_view_assignments" path3="/student_view_announcements" path4=""
             />
             <ViewCourses />
 
@@ -177,8 +178,8 @@ function App() {
 
         <Route path="/student_view_assignments" element={
           <>
-            <Navbar User="Student" text1={"View Courses"} text2={"View All Assignments"} text3={""} text4={""}
-              path1="/student_view_courses" path2="/student_view_assignments" path3="" path4=""
+            <Navbar User="Student" text1={"View Courses"} text2={"View All Assignments"} text3={"View All Announcements"} text4={""}
+              path1="/student_view_courses" path2="/student_view_assignments" path3="/student_view_announcements" path4=""
             />
             <ViewAssignments />
 
@@ -188,10 +189,20 @@ function App() {
 
         <Route path="/student_submit_assignments" element={
           <>
-            <Navbar User="Student" text1={"View Courses"} text2={"View All Assignments"} text3={""} text4={""}
-              path1="/student_view_courses" path2="/student_view_assignments" path3="" path4=""
+            <Navbar User="Student" text1={"View Courses"} text2={"View All Assignments"} text3={"View All Announcements"} text4={""}
+              path1="/student_view_courses" path2="/student_view_assignments" path3="/student_view_announcements" path4=""
             />
             <SubmitAssignment />
+
+          </>
+
+        } />
+        <Route path="/student_view_announcements" element={
+          <>
+            <Navbar User="Student" text1={"View Courses"} text2={"View All Assignments"} text3={"View All Announcements"} text4={""}
+              path1="/student_view_courses" path2="/student_view_assignments" path3="/student_view_announcements" path4=""
+            />
+            <ViewAnnouncements />
 
           </>
 
