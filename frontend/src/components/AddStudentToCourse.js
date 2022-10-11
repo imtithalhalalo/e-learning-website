@@ -85,8 +85,8 @@ const AddStudentToCourse = () => {
             (e) => {
               setCourseId(e.target.value);
             }}>
-            {courses.map(course => (
-              <option value={course._id}>{course.title}</option>
+            {courses.map((course, index) => (
+              <option key={index} value={course._id}>{course.title}</option>
             ))}
           </select>
         </div>
