@@ -2,11 +2,11 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Button from './Button';
-
+import { useNavigate } from 'react-router-dom';
 
 const ViewAssignments = () => {
     const [assignments, setAssignments] = useState([]);
-
+    const navigate = useNavigate();
     const getAssignments = async () => {
         const course_id = localStorage.getItem('course_id');
         try {
@@ -27,7 +27,12 @@ const ViewAssignments = () => {
     }, [])
     return (
         <main className="container-add">
-            <h2>My Assignments</h2>
+            <div className="bar">
+                <h2>My Assignments </h2>
+                <img src={process.env.PUBLIC_URL + "images/assignment.png"} alt=""
+                    width="28px"
+                    height="28px" />
+            </div>
             <br></br>
             <ul >
                 {assignments.map(assignment => (
@@ -45,7 +50,7 @@ const ViewAssignments = () => {
                                     (e) => {
                                         e.preventDefault();
                                         localStorage.setItem('assignment_id', assignment._id)
-                                        window.location.pathname = '/student_submit_assignments'
+                                        navigate('/student_submit_assignments')
                                     }
                                 }
                                 />
