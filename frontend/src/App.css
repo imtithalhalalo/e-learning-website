@@ -251,7 +251,7 @@ p {
   @media only screen and (max-width: 800px) {
     
     .container-add {
-      padding: 0%;
+      padding: 2%;
       max-width: 100%;
       margin-left: 14%;
     }
@@ -290,6 +290,9 @@ p {
     }
     .nav-links a i {
       margin-right: 0;
+    }
+    .logout {
+      width: 100%;
     }
   }
   

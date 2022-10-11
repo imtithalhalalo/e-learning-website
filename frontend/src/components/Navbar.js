@@ -37,7 +37,7 @@ const Navbar = ({User, text1 , text2 , text3, text4, path1, path2, path3, path4}
         </Link>
     </div>
     <br></br>
-    <Button onClick={Logout} text={"Logout"} btn={'btn-2'}/>
+    <Button onClick={Logout} text={"Logout"} btn={'btn-2 logout'}/>
     </section>
   );
 };
