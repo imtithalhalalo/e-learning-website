@@ -1,27 +1,28 @@
 import { useState } from "react";
 
 const Register = ({ onAdd }) => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [user_type, setUserType] = useState('admin');
-    const onSubmit = (e) => {
-        e.preventDefault();
-        if (!name || !email || !password) {
-          alert("Fill All Fields");
-          return;
-        }
-        setUserType('admin');
-        onAdd({ name, email, password, user_type });
-        
-        setName("");
-        setEmail("");
-        setPassword("");
-    };
-    return (
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [user_type, setUserType] = useState('admin');
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !email || !password) {
+      alert("Fill All Fields");
+      return;
+    }
+    setUserType('admin');
+    onAdd({ name, email, password, user_type });
+
+    setName("");
+    setEmail("");
+    setPassword("");
+  };
+  return (
+    <div className='background'>
       <main className="container">
         <form className="add-form" onSubmit={onSubmit}>
-        <h2>Sign Up</h2>
+          <h2>Sign Up</h2>
           <div className="form-control">
             <label>Name</label>
             <input
@@ -51,10 +52,12 @@ const Register = ({ onAdd }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <a href="/login"> Already have account? Login</a>
           <input type={"submit"} value="Sign Up" className="btn btn-block" />
         </form>
-    </main>
-    )
+      </main>
+    </div>
+  )
 }
 
 export default Register
