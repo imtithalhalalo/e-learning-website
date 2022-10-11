@@ -34,10 +34,10 @@ const ViewAssignments = () => {
 
                     <li className="boxes" key={assignment._id}>
                         <div className='box-white'>
-                            <div className='content'>
-                                <h1 className='course-title'>
+                            <div className='contenth1'>
+                                <h3>
                                     {assignment.title}
-                                </h1>
+                                </h3>
                                 <p>
                                     {assignment.desc}
                                 </p>

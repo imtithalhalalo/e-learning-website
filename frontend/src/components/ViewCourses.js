@@ -34,9 +34,9 @@ const ViewCourses = () => {
                             window.location.pathname = `/student_view_assignments`
                         }}>
                             <div className='content'>
-                                <h1 className='course-title'>
+                                <h4>
                                     {course.title}
-                                </h1>
+                                </h4>
                                 <p>
                                     {course.desc}
                                 </p>
